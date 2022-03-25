@@ -207,12 +207,13 @@ namespace FarrokhGames.Inventory
                 image.gameObject.SetActive(false);
                 RecycleImage(image);
             }
-            _items.Clear();
+            itemsHolder.items.Clear();
 
             // Add all items
             foreach (var item in inventory.allItems)
             {
                 HandleItemAdded(item);
+
             }
         }
         

@@ -102,7 +102,6 @@ namespace FarrokhGames.Inventory
 
                 // Remove the item from inventory
                 inventory.TryRemove(_itemToDrag);
-
                 onItemPickedUp?.Invoke(_itemToDrag);
             }
 
@@ -125,8 +124,8 @@ namespace FarrokhGames.Inventory
             public void OnEndDrag(PointerEventData eventData)
             {
                 if (_draggedItem == null) return;
-                
-                var mode = _draggedItem.Drop(eventData.position);
+
+            var mode = _draggedItem.Drop(eventData.position);
             //foreach (var item in eventData.hovered)
             //{
             //    print(item.name);
@@ -145,7 +144,6 @@ namespace FarrokhGames.Inventory
                         break;
                     case InventoryDraggedItem.DropMode.Dropped:
                         onItemDropped?.Invoke(_itemToDrag);
-                    print(onItemDropped.Target);
                         ClearHoveredItem();
                         break;
                 }

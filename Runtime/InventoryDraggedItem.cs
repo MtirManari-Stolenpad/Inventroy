@@ -85,10 +85,18 @@ namespace FarrokhGames.Inventory
         {
             set
             {
-                // Move the image
-                var camera = _canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : _canvas.worldCamera;
-                RectTransformUtility.ScreenPointToLocalPointInRectangle(_canvasRect, value + _offset, camera,  out var newValue);
-                _image.rectTransform.localPosition = newValue;
+                if (_canvas != null)
+                {
+                    if (_image != null)
+                    {
+                        // Move the image
+                        var camera = _canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : _canvas.worldCamera;
+                        RectTransformUtility.ScreenPointToLocalPointInRectangle(_canvasRect, value + _offset, camera, out var newValue);
+                        _image.rectTransform.localPosition = newValue;
+                    }
+
+                }
+
                 
                 
                 // Make selections
