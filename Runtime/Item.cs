@@ -10,7 +10,9 @@ namespace FarrokhGames.Inventory
     public enum ItemType
     {
         Any,
+        Add1,
         Add2,
+        Add3,
         Add4,
         X2,
     }
@@ -18,6 +20,8 @@ namespace FarrokhGames.Inventory
     public class Item : MonoBehaviour
     {
         public List<Transform> slots;
+        public bool UsedInCalcul = false;
+
         public bool dragged = false;
         public Vector2 position;
         public ItemType _type = ItemType.Any;
@@ -30,12 +34,15 @@ namespace FarrokhGames.Inventory
         private void OnTriggerEnter2D(Collider2D other)
         {
             slots.Add(other.transform);
+
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
             slots.Remove(other.transform);
-            dragged = true;
+
+                dragged = true;
+            
         }
     }
 }
