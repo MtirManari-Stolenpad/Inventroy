@@ -130,7 +130,7 @@ namespace FarrokhGames.Inventory
             //{
             //    print(item.name);
             //}
-            
+            //print(eventData.hovered[0].transform.parent.name);
                 switch (mode)
                 {
                     case InventoryDraggedItem.DropMode.Added:

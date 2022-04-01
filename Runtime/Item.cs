@@ -34,6 +34,13 @@ namespace FarrokhGames.Inventory
         private void OnTriggerEnter2D(Collider2D other)
         {
             slots.Add(other.transform);
+            if (!other.transform.parent.parent.name.Contains("holder"))
+            {
+                other.transform.parent.parent.GetComponent<InventoryRenderer>().itemsHolder.items.Add(this);
+
+                dragged = true;
+            }
+
 
         }
 
@@ -41,7 +48,6 @@ namespace FarrokhGames.Inventory
         {
             slots.Remove(other.transform);
 
-                dragged = true;
             
         }
     }

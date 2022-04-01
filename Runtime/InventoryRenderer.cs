@@ -26,7 +26,7 @@ namespace FarrokhGames.Inventory
         private Sprite _cellSpriteBlocked = null;
 
         [SerializeField, Tooltip("Items Holder")]
-        private CanvesController itemsHolder = null;
+        public CanvesController itemsHolder = null;
 
         internal IInventoryManager inventory;
         InventoryRenderMode _renderMode;
@@ -224,6 +224,17 @@ namespace FarrokhGames.Inventory
         {
             var img = CreateImage(item.sprite, false);
 
+            if (img.gameObject.GetComponent<Item>() == null)
+            {
+                var itemC = img.gameObject.AddComponent<Item>();
+                 itemC = img.gameObject.GetComponent<Item>();
+                itemC._type = item.type;
+                itemC.position = item.position;
+            }
+            var itemCC = img.gameObject.GetComponent<Item>();
+            itemCC._type = item.type;
+            itemCC.position = item.position;
+
             if (_renderMode == InventoryRenderMode.Single)
             {
                 img.rectTransform.localPosition = rectTransform.rect.center;
@@ -245,24 +256,6 @@ namespace FarrokhGames.Inventory
             }
             img.name = "image" + itemsHolder.items.Count;
 
-            if (img.gameObject.GetComponent<Item>() == null)
-            {
-                img.gameObject.AddComponent<Item>();
-
-            }
-            else
-            {
-               var itemC =  img.gameObject.GetComponent<Item>();
-                    itemC._type = item.type;
-                if (!itemsHolder.items.Contains(itemC)){
-                    itemsHolder.items.Add(itemC);
-
-                }
-                itemC.position = item.position;
-                
-            }
-          
-         //  print(item.position);
             _items.Add(item, img);
         }
 

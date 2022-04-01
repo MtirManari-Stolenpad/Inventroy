@@ -18,14 +18,18 @@ namespace FarrokhGames.Inventory
         public List<string> truckX2;
 
 
-        public float rpm = 20f;
+        public float rpm,oldoldrpm , oldoldoldrpm = 20f;
         public float oldRpm = 20f;
 
+       
 
         public float speedfloat = 5f;
-
+        float oldspeedfloat;
         void Start()
         {
+            oldoldrpm = rpm;
+            oldoldoldrpm = oldRpm;
+            oldspeedfloat = speedfloat;
             if (name.Contains("Rpm"))
             {
                 rpm = 20; 
@@ -53,7 +57,7 @@ namespace FarrokhGames.Inventory
 
         public void GetPostion()
         {
-            RemoveNotDragged();
+           // RemoveNotDragged();
             int i = 1;
 
             foreach (var item in items)
@@ -97,15 +101,20 @@ namespace FarrokhGames.Inventory
 
         void CalCulateRPM()
         {
-            //foreach (var item in itemT)
-            //{
-            //    item.UsedInCalcul = false;
-            //}
+            foreach (var item in itemT)
+            {
+                item.UsedInCalcul = false;
+            }
 
-           // rpm = oldRpm;
+              rpm = oldoldrpm;
+              oldRpm = oldoldoldrpm;
+            speedfloat = oldspeedfloat;
             foreach (var itemx in itemT)
             {
+
                 var item = GetMinimumItem();
+               // print(item._type);
+
                 if (item == null) return;
                 if (item._type.Equals(ItemType.X2))
                 {
